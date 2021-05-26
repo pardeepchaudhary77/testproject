@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-sm-3" *ngFor="let product of Products; index as i">
+    <div class="card">
+      <img class="card-img-top" [src]="product.ProductPath" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{product.Name | titlecase}}</h5>
+        <p class="card-text">{{product.Price | currency:"USD"}}</p>
+        <p class="card-text">{{product.Desc}}</p>
+        <button class="btn btn-primary" (click)="addToCart(i)">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>

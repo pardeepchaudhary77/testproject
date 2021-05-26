@@ -1,0 +1,37 @@
+<!-- Grey with black text -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container">
+    <a class="navbar-brand" routerLink="/">Ecommerce Store</a>
+    <button class="navbar-toggler" type="button" (click)="toggleNavBar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar" [class.show]="isopen">
+      <ul class="navbar-nav">
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/account" routerLinkActive="active">Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/cart">Cart </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/orders">Orders </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/products">Products </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/login">Login </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/signup">Sign Up </a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-danger" routerLinkActive="active" routerLink="/logout">Logout </a>
+          </li>
+      </ul>
+    </div>
+  </div>
+  </nav>

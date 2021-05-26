@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ecommerceapp-2ec3b": {
+      "hosting": {
+        "project1": [
+          "ecommerceapp-2ec3b"
+        ]
+      }
+    }
+  }
+}
