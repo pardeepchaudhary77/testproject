@@ -10,16 +10,17 @@ import { PersonDetailsComponent } from './components/person-details/person-detai
 import { ProductsComponent } from './components/products/products.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { GuardService } from './services/guard.service';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
   { path: '', redirectTo: '/',  pathMatch: 'full'},
   { path: 'details', component: PersonDetailsComponent},
-  { path: 'account', component: AccountComponent},
-  { path: 'cart', component: CartComponent},
+  { path: 'account', component: AccountComponent, canActivate: [GuardService]},
+  { path: 'cart', component: CartComponent, canActivate: [GuardService]},
   { path: 'login', component: LoginComponent},
   { path: 'logout', component: LogoutComponent},
-  { path: 'orders', component: OrdersComponent},
+  { path: 'orders', component: OrdersComponent, canActivate: [GuardService]},
   { path: 'products', component: ProductsComponent},
   { path: 'signup', component: SignupComponent},
   { path: '**', component: PageNotFoundComponent},

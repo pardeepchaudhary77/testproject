@@ -1,1 +1,67 @@
-<p>account works!</p>
+<h2>All Products</h2>
+<div class="row">
+    <div class="col-sm-12">
+        <button class="btn btn-primary pull-right" (click)="showForm()">Add New Product</button></div>
+</div>
+
+<form #f="ngForm" (ngSubmit)="addProduct(f.value)" *ngIf="addform">
+    <div class="form-group">
+        <label for="">Name</label>
+        <input type="text" ngModel name="Name" #Name="ngModel" [class.errorInput]="Name.touched && !Name.valid" required class="form-control">
+        <div class="text-danger" *ngIf="Name.touched && !Name.valid">
+            <span *ngIf="Name.errors?.required">Name is required field</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Price $</label>
+        <input type="number" ngModel name="Price" #Price="ngModel" [class.errorInput]="Price.touched && !Price.valid" required class="form-control">
+        <div class="text-danger" *ngIf="Price.touched && !Price.valid">
+            <span *ngIf="Price.errors?.required">Name is required field</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Description</label>
+        <textarea ngModel name="Desc" rows="5" #Desc="ngModel" [class.errorInput]="Desc.touched && !Desc.valid" required class="form-control"></textarea>
+        <div class="text-danger" *ngIf="Desc.touched && !Desc.valid">
+            <span *ngIf="Desc.errors?.required">Name is required field</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Image Upload</label>
+        <input type="file" accept="*.png.jpg.jpeg" (change)="uploadFile($event)" ngModel name="image" #image class="form-control">
+        
+    </div>
+    <div class="form-group">
+        <img [src]="imgSrc" *ngIf="imgSrc" style="width: 200px; border: 3px solid #e1e1e1;" />
+    </div>
+    <button class="btn btn-success" [disabled]="!f.valid">Save</button>&nbsp;
+    <button class="btn btn-danger" (click)="cancelForm()">Cancel</button>
+</form>
+
+<br/>
+<br/>
+
+<div class="alert alert-danger" *ngIf="errorMsg">{{errorMsg}}</div>
+<div class="alert alert-success" *ngIf="successMsg">{{successMsg}}</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Desc</th>
+            <th>Product Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of Products; index as i">
+            <td><input class="form-control" type="text" [(ngModel)]="product.Name" /></td>
+            <td><input class="form-control" type="number" [(ngModel)]="product.Price" /></td>
+            <td><textarea class="form-control" type="text" [(ngModel)]="product.Desc"></textarea></td>
+            <td><img src="{{ product.ProductPath }}" style="width: 100px;" /></td>
+            <td nowrap>
+                <button (click)="updateProduct(i)" class="btn btn-success">Update</button>&nbsp;
+                <button (click)="removeProduct(i)" class="btn btn-danger">Delete</button></td>
+        </tr>
+    </tbody>
+</table>

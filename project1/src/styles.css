@@ -16,3 +16,28 @@ img.card-img-top {
     border: 1px solid #dc3545;
     background: #fff1f2;
 }
+.card{
+    overflow: hidden;
+}
+.productImage {
+    height: 175px;
+    background-size: contain;
+    background-position: center center;
+    transition: transform .2s;
+    transform: scale(1);
+    background-repeat: no-repeat;
+    
+}
+.card:hover .productImage{
+    transform: scale(1.1);
+}
+.wishList{
+    position: absolute;
+    top: 6px;
+    right: 7px;
+    font-size: 30px;
+    color: red;
+}
+.wishList:hover:before{
+    content: "\f004";
+}

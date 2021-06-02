@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestore } from '@angular/fire/firestore'
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from'@angular/fire/auth';
+import { AngularFireStorageModule } from'@angular/fire/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +23,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HeaderComponent } from './partials/header/header.component';
 import { FooterComponent } from './partials/footer/footer.component';
 import { FormsModule } from '@angular/forms';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,10 @@ import { FormsModule } from '@angular/forms';
         appId: "1:448728299552:web:8e5f42940ff8415f5ae445",
         measurementId: "G-BQ1NJ0FHV8"
       }
-    )
+    ),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]
