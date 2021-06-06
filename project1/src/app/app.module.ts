@@ -24,6 +24,8 @@ import { HeaderComponent } from './partials/header/header.component';
 import { FooterComponent } from './partials/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { from } from 'rxjs';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { AddressComponent } from './components/address/address.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { from } from 'rxjs';
     OrdersComponent,
     PageNotFoundComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CategoriesComponent,
+    AddressComponent
   ],
   imports: [
     BrowserModule,

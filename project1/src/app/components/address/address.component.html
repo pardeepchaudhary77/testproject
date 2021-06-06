@@ -1,0 +1,102 @@
+<ul id="progressbar">
+    <li class="active" id="account"><strong>Cart</strong></li>
+    <li class="active" id="personal"><strong>Address</strong></li>
+    <li id="payment"><strong>Payment</strong></li>
+    <li id="confirm"><strong>Finish</strong></li>
+</ul>
+<div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+        aria-valuemin="0" style="width: 50%;" aria-valuemax="100"></div>
+</div>
+<br/><br/>
+<div class="row">
+    <div class="col-sm-6">
+        <h4>Available Address</h4>
+        <div class="addressArea mb-4 mr-3" *ngFor="let address of addressess; index as i">
+            <p>{{ address.address }}, <br/>
+            {{ address.address2 }}<br/>
+            {{ address.zipcode }}<br/>
+            {{ address.phone }} <br/>
+             
+            {{ address.city }} <br/>
+            {{ address.state }} | {{ address.country }} <br/><br/>
+            <button class="btn btn-danger" (click)="deliverAddress(i)">Deliver to this address</button>
+            </p>
+        </div>
+    </div>
+    <div class="col-sm-1"><div class="borderA"></div></div>
+    <div class="col-sm-5">
+        <h4>Add New Address</h4>
+        <form #f="ngForm" (ngSubmit)="onAddress(f.value)">
+            <!-- Modal body -->
+            <div class="">
+                <!-- <div class="alert alert-danger" *ngIf="errorMsg">{{errorMsg}}</div> -->
+                <div class="form-group">
+                    <label>Address 1</label>
+                    <input type="text" ngModel #address="ngModel" name="address" [class.errorInput]="address.touched && !address.valid" class="form-control" required>
+                    <div class="text-danger" *ngIf="address.touched && !address.valid">
+                        <span *ngIf="address.errors?.required">Address is required field.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Address 2</label>
+                    <input type="text" ngModel #address2="ngModel" name="address2" class="form-control">
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label>Phone</label>
+                        <input type="text" ngModel #phone="ngModel" name="phone" [class.errorInput]="phone.touched && !phone.valid" class="form-control" required>
+                        <div class="text-danger" *ngIf="phone.touched && !phone.valid">
+                            <span *ngIf="phone.errors?.required">Address is required field.</span>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label>Zip Code</label>
+                        <input type="text" ngModel #zipcode="ngModel" name="zipcode" [class.errorInput]="zipcode.touched && !zipcode.valid" class="form-control" required>
+                        <div class="text-danger" *ngIf="zipcode.touched && !zipcode.valid">
+                            <span *ngIf="zipcode.errors?.required">Address is required field.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" ngModel #city="ngModel" name="city" [class.errorInput]="city.touched && !city.valid" class="form-control" required>
+                    <div class="text-danger" *ngIf="city.touched && !city.valid">
+                        <span *ngIf="city.errors?.required">Address is required field.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>State</label>
+                    <select ngModel #state="ngModel" name="state" [class.errorInput]="state.touched && !state.valid" class="form-control" required>
+                        <option value="">Select</option>
+                        <option *ngFor="let statedata of stateJsonData" [value]="statedata.name">{{ statedata.name }}</option>
+                    </select>
+                    <div class="text-danger" *ngIf="state.touched && !state.valid">
+                        <span *ngIf="state.errors?.required">State is required field.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Country</label>
+                    <select ngModel #country="ngModel" name="country" [class.errorInput]="country.touched && !country.valid" class="form-control" required>
+                        <option value="">Select</option>
+                        <option value="India">India</option>
+                    </select>
+                    <div class="text-danger" *ngIf="country.touched && !country.valid">
+                        <span *ngIf="country.errors?.required">Country is required field.</span>
+                    </div>
+                </div>
+                
+                        
+            </div>
+            <div class="d-flex justify-content-end">
+
+            
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>&nbsp;
+              <button type="submit" class="btn btn-success" [disabled]="f.invalid">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- The Modal -->
+
+

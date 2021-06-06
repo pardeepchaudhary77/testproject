@@ -1,4 +1,14 @@
-<h2>Shopping Cart</h2>
+<ul id="progressbar">
+    <li class="active" id="account"><strong>Cart</strong></li>
+    <li id="personal"><strong>Address</strong></li>
+    <li id="payment"><strong>Payment</strong></li>
+    <li id="confirm"><strong>Finish</strong></li>
+</ul>
+<div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+        aria-valuemin="0" style="width: 25%;" aria-valuemax="100"></div>
+</div>
+<br/><br/>
 <div class="alert alert-success" *ngIf="successMsg"><b>Success: </b>{{successMsg}}</div>
 <div class="alert alert-danger" *ngIf="errorMsg"><b>Delete: </b>{{errorMsg}}</div>
 <table class="table">
@@ -8,7 +18,7 @@
             <th>Price</th>
             <th>Amount</th>
             <th>Total</th>
-            <th width="10%">Options</th>
+            <th width="10%">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -26,8 +36,8 @@
     <tfoot>
         <tr>
             <td colspan="3" align="right"><b>Grand total</b></td>
-            <td></td>
-            <td></td>
+            <td><b class="text-success">{{ getTotal() | currency:"USD" }}</b></td>
+            <td nowrap><a class="btn btn-primary" routerLink="/address">Proceed to Checkout</a></td>
         </tr>
     </tfoot>
 </table>

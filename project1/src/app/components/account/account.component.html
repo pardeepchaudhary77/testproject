@@ -1,7 +1,8 @@
 <h2>All Products</h2>
 <div class="row">
-    <div class="col-sm-12">
-        <button class="btn btn-primary pull-right" (click)="showForm()">Add New Product</button></div>
+    <div class="col-sm-12 d-flex justify-content-end">
+        <button class="btn btn-primary" (click)="showForm()">Add New Product</button> 
+    </div>
 </div>
 
 <form #f="ngForm" (ngSubmit)="addProduct(f.value)" *ngIf="addform">
@@ -16,14 +17,24 @@
         <label for="">Price $</label>
         <input type="number" ngModel name="Price" #Price="ngModel" [class.errorInput]="Price.touched && !Price.valid" required class="form-control">
         <div class="text-danger" *ngIf="Price.touched && !Price.valid">
-            <span *ngIf="Price.errors?.required">Name is required field</span>
+            <span *ngIf="Price.errors?.required">Price is required field</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Category</label>
+        <select ngModel name="category" #category="ngModel" [class.errorInput]="category.touched && !category.valid" required class="form-control">
+            <option value="">Select</option>
+            <option *ngFor="let category_DD of Categories" [value]="category_DD.category">{{ category_DD.category }}</option>
+        </select>
+        <div class="text-danger" *ngIf="category.touched && !category.valid">
+            <span *ngIf="category.errors?.required">Category is required field</span>
         </div>
     </div>
     <div class="form-group">
         <label for="">Description</label>
         <textarea ngModel name="Desc" rows="5" #Desc="ngModel" [class.errorInput]="Desc.touched && !Desc.valid" required class="form-control"></textarea>
         <div class="text-danger" *ngIf="Desc.touched && !Desc.valid">
-            <span *ngIf="Desc.errors?.required">Name is required field</span>
+            <span *ngIf="Desc.errors?.required">Description is required field</span>
         </div>
     </div>
     <div class="form-group">
@@ -49,6 +60,7 @@
             <th>Name</th>
             <th>Price</th>
             <th>Desc</th>
+            <th>Category</th>
             <th>Product Image</th>
             <th>Actions</th>
         </tr>
@@ -58,10 +70,57 @@
             <td><input class="form-control" type="text" [(ngModel)]="product.Name" /></td>
             <td><input class="form-control" type="number" [(ngModel)]="product.Price" /></td>
             <td><textarea class="form-control" type="text" [(ngModel)]="product.Desc"></textarea></td>
+            <td>
+                <select class="form-control" [(ngModel)]="product.category">
+                    <option  *ngFor="let category_DD2 of Categories" [value]="category_DD2.category">{{category_DD2.category}}</option>
+                </select></td>
             <td><img src="{{ product.ProductPath }}" style="width: 100px;" /></td>
-            <td nowrap>
+            <td nowrap width="5%">
                 <button (click)="updateProduct(i)" class="btn btn-success">Update</button>&nbsp;
                 <button (click)="removeProduct(i)" class="btn btn-danger">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>All Categories</h2>
+<div class="row">
+    <div class="col-sm-12 d-flex justify-content-end">
+        <button class="btn btn-primary" (click)="showCategoryForm()">Add New Category</button>
+    </div>
+</div>
+<br/><br/>
+<form #c="ngForm" (ngSubmit)="addCategory(c.value)" *ngIf="addCategoryForm">
+    <div class="form-group">
+        <label for="">Catagory</label>
+        <input type="text" ngModel name="category" #category="ngModel" [class.errorInput]="category.touched && !category.valid" required class="form-control">
+        <div class="text-danger" *ngIf="category.touched && !category.valid">
+            <span *ngIf="category.errors?.required">Catagory is required field</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Message</label>
+        <textarea ngModel name="message" rows="5" #message="ngModel" class="form-control"></textarea>
+    </div>
+    <button class="btn btn-success" [disabled]="!c.valid">Save</button>&nbsp;
+    <button class="btn btn-danger" (click)="cancelCategoryForm()">Cancel</button>
+    <br/><br/>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Message</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let category of Categories; index as in">
+            <td><input class="form-control" type="text" [(ngModel)]="category.category" /></td>
+            <td><textarea class="form-control" type="text" [(ngModel)]="category.message"></textarea></td>
+            <td nowrap width="5%">
+                <button (click)="updateCategory(in)" class="btn btn-success">Update</button>&nbsp;
+                <button (click)="removeCategory(in)" class="btn btn-danger">Delete</button>
+            </td>
         </tr>
     </tbody>
 </table>

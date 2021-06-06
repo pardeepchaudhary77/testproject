@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html'
+  selector: 'app-categories',
+  templateUrl: './categories.component.html'
 })
-export class HomeComponent implements OnInit {
+export class CategoriesComponent implements OnInit {
 
   add: number = -1;
   wishList_heart: boolean = false;

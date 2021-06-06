@@ -40,5 +40,14 @@ export class CartComponent implements OnInit {
     this.cart.updateDocCart(this.shoppingCart[index].id, this.shoppingCart[index].amount).then(alert => this.successMsg = 'Amount has been update successfully')
   }
 
+  getTotal(){
+    let total = 0
+    for(var i = 0; i < this.shoppingCart.length; i++){
+      if (this.shoppingCart[i].amount) {
+        total += this.shoppingCart[i].amount * this.shoppingCart[i].price
+      }
+    }
+    return total
+  }
 
 }

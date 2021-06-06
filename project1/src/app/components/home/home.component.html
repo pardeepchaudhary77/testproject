@@ -1,20 +1,34 @@
-<div class="alert alert-danger" *ngIf="Products.length === 0">No Record Found</div>
 <div class="row">
-  <div class="col-sm-3" *ngFor="let product of Products; index as i">
-    <div class="card">
-      <div style="background-image: url({{product.ProductPath}});" class="productImage">
-      </div>
-      <i class="fa wishList" [class]="wishList_heart ? 'fa-heart' : 'fa-heart-o'"  (click)="wishList(i)"></i>
-      <div class="card-body">
-        <h5 class="card-title">{{product.Name | titlecase}}</h5>
-        <p class="card-text">{{product.Price | currency:"USD"}}</p>
-        <p class="card-text">{{product.Desc}}</p> 
-        <button class="btn btn-primary" (click)="addToCart(i)" *ngIf="add !== i">Add to Cart</button>
-        <div *ngIf="add === i">
-          <input type="number" class="form-control" placeholder="Amount (kg)" ngModel #amount="ngModel" name="amount">
-          <button class="btn btn-primary" style="margin-top: 5px;" (click)="buy(amount.value)">Buy</button>
+  <div class="col-sm-3">
+    <h2>Categories</h2>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let category of Categories">
+          <a [routerLink]="['/category/'+ category.category]">{{category.category}}</a>
+        </li>
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    <h2>All Products</h2>
+    <div class="alert alert-danger" *ngIf="Products.length === 0">No Record Found</div>
+      <div class="row">
+        <div class="col-sm-4 mb-3" *ngFor="let product of Products; index as i">
+          <div class="card">
+            <div style="background-image: url({{product.ProductPath}});" class="productImage">
+            </div>
+            <i class="fa wishList" [class]="wishList_heart ? 'fa-heart' : 'fa-heart-o'"  (click)="wishList(i)"></i>
+            <div class="card-body">
+              <h5 class="card-title"><a [routerLink]="['/products/'+ product.id]">{{product.Name | titlecase}}</a></h5>
+              <p class="card-text">{{product.Price | currency:"USD"}} <span class="badge badge-success">{{product.category}}</span></p>
+              <button class="btn btn-primary" (click)="addToCart(i)" *ngIf="add !== i">Add to Cart</button>
+              <div *ngIf="add === i">
+                <input type="number" class="form-control" placeholder="Amount (kg)" ngModel #amount="ngModel" name="amount">
+                <button class="btn btn-primary" style="margin-top: 5px;" (click)="buy(amount.value)">Buy</button>
+              </div>
+            </div>
+          </div>
+          
         </div>
       </div>
-    </div>
   </div>
 </div>
+
